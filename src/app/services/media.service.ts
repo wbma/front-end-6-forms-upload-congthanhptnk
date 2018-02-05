@@ -36,7 +36,7 @@ export class MediaService {
   }
 
   register(user){
-    return this.http.post(this.apiUrl +'/users', user);
+    return this.http.post(this.apiUrl + '/users', user);
   }
 
   getUserData() {
@@ -45,5 +45,12 @@ export class MediaService {
     };
 
     return this.http.get(this.apiUrl + '/users/user', settings);
+  }
+
+  upload(formData){
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token', localStorage.getItem('token'))
+    };
+    return this.http.post(this.apiUrl + '/media', formData, settings);
   }
 }
